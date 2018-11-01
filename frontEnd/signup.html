@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Trojan Mingles
+	</title>
+
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css"> -->
+
+	
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/home.css">
+	<link rel="stylesheet" type="text/css" href="css/signup.css">
+
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light mainNavBar" style="padding: 0px 0.5rem;">
+	  <!-- <a class="navbar-brand" href="#">Trojan Mingle</a> -->
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#" style="color: gold;">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      
+	      <!-- <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Dropdown
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="#">Action</a>
+	          <a class="dropdown-item" href="#">Another action</a>
+	          <div class="dropdown-divider"></div>
+	          <a class="dropdown-item" href="#">Something else here</a>
+	        </div>
+	      </li> -->
+	      <!-- <li class="nav-item" style="float: right;">
+	        <a class="nav-link" style="color: white;" href="#">Signup</a>
+	      </li> -->
+	      <!-- <li class="nav-item" style="float: right;">
+	        <a class="nav-link" style="color: white;" href="#">Login</a>
+	      </li> -->
+
+	      <!-- <div style="clear: both;"></div> -->
+	    </ul>
+	    <span class="nav-item">
+        	<a class="nav-link" style="padding-left: 0px; color: darkgrey; margin-top: 5px; margin-bottom: 5px;" href="">Browse as a guest</a>
+    	</span>
+	    <span class="nav-item">
+        	<a class="nav-link" style="padding-left: 0px; color: white;" href="">Login</a>
+    	</span>
+	   	
+<!-- 	    <a class="nav-link" href="#" style="color: gold;">Browse as a guest</a>
+	    <a class="nav-link" href="#" style="color: gold;">Login</a>
+	    <a class="nav-link" href="#" style="color: gold;">Signup</a> -->
+	    <!-- <a type="" class="btn btn-outline-danger" style="margin: 10px; color: darkgrey;">Browse as a guest</a> -->
+	    <!-- <a type="" class="btn btn-outline-warning" style="width: 80px; color: white; margin: 10px;">Signup</a>
+	    <a type="" class="btn btn-outline-warning" style="width: 80px; color: white; margin: 10px;">Login</a> -->
+	    <!-- <form class="form-inline my-2 my-lg-0">
+	      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	    </form> -->
+	  </div>
+	</nav>
+
+	<h1>Sign up for Trojan Mingle!</h1>
+	<div id="_signupBox">
+		<form class="needs-validation" novalidate>
+		  <div class="form-row">
+		    <div class="col-md-4 mb-3">
+		      <label for="validationCustom01">First name</label>
+		      <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
+		      <div class="valid-feedback">
+		        Looks good!
+		      </div>
+		    </div>
+		    <div class="col-md-4 mb-3">
+		      <label for="validationCustom02">Last name</label>
+		      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="" required>
+		      <div class="valid-feedback">
+		        Looks good!
+		      </div>
+		    </div>
+		    <div class="col-md-4 mb-3">
+		      <label for="validationCustomUsername">USC Email</label>
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <span class="input-group-text" id="inputGroupPrepend">@</span>
+		        </div>
+		        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+		        <div class="invalid-feedback">
+		          Please choose a username.
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="form-row">
+
+		    <div class="col-md-3 mb-3">
+		      <label for="validationCustom03">Year</label>
+		      <select class="custom-select" id="inputGroupSelect01" required>
+  		  	    <option selected>Choose...</option>
+  		  	    <option value="1">Freshman</option>
+  		  	    <option value="2">Sophomore</option>
+  		  	    <option value="3">Junior</option>
+  		  	    <option value="4">Senior</option>
+  		  	    <option value="5">Super Senior</option>
+  		  	    <option value="6">Master year 1</option>
+  		  	    <option value="7">Master year 2</option>
+  		  	    <option value="8">Doctor and beyond</option>
+  		  	  </select>
+		    </div>
+		    <div class="col-md-3 mb-3">
+		      <label for="validationCustom04">Age</label>
+		      <input type="number" class="form-control" id="validationCustom04" placeholder="Age.." required>
+		      <div class="invalid-feedback">
+		        Please provide a valid state.
+		      </div>
+		    </div>
+		    <div class="col-md-3 mb-3">
+		      <label for="validationCustom05">Major</label>
+		      <select class="custom-select" id="inputGroupSelect01" required>
+			    <option selected>Choose...</option>
+			    <option value="1">Computer Science</option>
+			    <option value="2">Business Administration</option>
+			    <option value="3">Double</option>
+			  </select>
+		    </div>
+
+	        <div class="col-md-3 mb-3">
+	          <label for="validationCustom05">Gender</label>
+	          <select class="custom-select" id="inputGroupSelect01" required>
+	            <option selected>Choose...</option>
+	            <option value="1">Male</option>
+	            <option value="2">Female</option>
+	            <option value="3">Other</option>
+	          </select>
+	        </div>
+
+		  </div>
+		  	<label for="validationDefaultUsername">Idea date</label>
+	  		  <div class="form-row" style="">
+
+
+	  		  	<div class="custom-control custom-checkbox _sadBox">
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
+	  		  	  <label class="custom-control-label" for="customCheck1">Movie</label>
+	  		  	</div>
+
+	  		  	<div class="custom-control custom-checkbox _sadBox">
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
+	  		  	  <label class="custom-control-label" for="customCheck1">Coffee</label>
+	  		  	</div>
+
+	  		  	<div class="custom-control custom-checkbox _sadBox">
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
+	  		  	  <label class="custom-control-label" for="customCheck1">Breakfast</label>
+	  		  	</div>
+
+	  		  	<div class="custom-control custom-checkbox _sadBox">
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
+	  		  	  <label class="custom-control-label" for="customCheck1">Lunch</label>
+	  		  	</div>
+
+	  		  	<div class="custom-control custom-checkbox _sadBox">
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
+	  		  	  <label class="custom-control-label" for="customCheck1">Dinner</label>
+	  		  	</div>
+
+	  		  	<div class="custom-control custom-checkbox _sadBox">
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
+	  		  	  <label class="custom-control-label" for="customCheck1">Concert</label>
+	  		  	</div>
+
+	  		  	<div class="custom-control custom-checkbox _sadBox">
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
+	  		  	  <label class="custom-control-label" for="customCheck1">Sport</label>
+	  		  	</div>
+
+	  		  	<div class="custom-control custom-checkbox _sadBox">
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
+	  		  	  <label class="custom-control-label" for="customCheck1">Game</label>
+	  		  	</div>
+	  		    <!-- <div class="col-md-3 mb-3">
+		              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Movie" aria-describedby="inputGroupPrepend2" required>
+		              
+	  		    </div> -->
+
+      		    <!-- <div class="col-md-3 mb-3">
+      		      <label for="validationDefaultUsername">Music</label>
+    	              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Music" aria-describedby="inputGroupPrepend2" required>
+      		    </div>
+
+	  		    <div class="col-md-3 mb-3">
+	  		      <label for="validationDefaultUsername">Coffee</label>
+		              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Coffee" aria-describedby="inputGroupPrepend2" required>
+	  		    </div>
+
+	  		    <div class="col-md-3 mb-3">
+	  		      <label for="validationDefaultUsername">Acitivity</label>
+		              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Hiking" aria-describedby="inputGroupPrepend2" required>
+	  		    </div> -->
+
+	  		  </div>
+	  		  <br>
+
+<!-- 	  		  <div class="form-row">
+	  		    <div class="col-md-3 mb-3">
+	  		      <label for="validationDefaultUsername">Ideao date</label>
+		              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Breakfast" aria-describedby="inputGroupPrepend2" required>
+	  		    </div>
+
+      		    <div class="col-md-3 mb-3">
+      		      <label for="validationDefaultUsername">Music</label>
+    	              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Lunch" aria-describedby="inputGroupPrepend2" required>
+      		    </div>
+
+	  		    <div class="col-md-3 mb-3">
+	  		      <label for="validationDefaultUsername">Coffee</label>
+		              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Dinner" aria-describedby="inputGroupPrepend2" required>
+	  		    </div>
+
+	  		    <div class="col-md-3 mb-3">
+	  		      <label for="validationDefaultUsername">Acitivity</label>
+		              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Sport" aria-describedby="inputGroupPrepend2" required>
+	  		    </div>
+
+	  		  </div> -->
+
+	  		<!--   <div class="form-row">
+		  		    <div class="col-md-3 mb-3">
+		  		      <label for="validationDefaultUsername">Ideao date</label>
+			              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Concert" aria-describedby="inputGroupPrepend2" required>
+		  		    </div>
+
+	      		    <div class="col-md-3 mb-3">
+	      		      <label for="validationDefaultUsername">Music</label>
+	    	              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Game" aria-describedby="inputGroupPrepend2" required>
+	      		    </div>
+
+		  		    <div class="col-md-3 mb-6">
+		  		      <label for="validationDefaultUsername">Coffee</label>
+			              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Other" aria-describedby="inputGroupPrepend2" required>
+		  		    </div>
+	  		  	</div> -->
+
+	  		  	<div class="input-group">
+	  		  	  <div class="input-group-prepend">
+	  		  	    <span class="input-group-text">About me</span>
+	  		  	  </div>
+	  		  	  <textarea class="form-control" aria-label="With textarea"></textarea>
+	  		  	</div>
+
+	  		  	<br>
+
+	  	    <div class="form-group">
+	      	    <label for="_uploadAnImage">A shining photo of you (<span style="color: orangered;">strongly recommended</span>)</label>
+	      	    <input type="hidden" id="avatar_url" name="supply[s_photoUrl]" value="/images/default.png">
+	      	    <input type="file" accept="image/*" class="form-control-file" id="_uploadAnImage" value="/images/default.png"><span class="_note">(only image files accepted)</span>
+	      	  </div>
+		  
+		  <div class="form-group">
+		    <div class="form-check">
+		      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+		      <label class="form-check-label" for="invalidCheck">
+		        Agree to terms and conditions
+		      </label>
+		      <div class="invalid-feedback">
+		        You must agree before submitting.
+		      </div>
+		    </div>
+		  </div>
+		  <button class="btn btn-primary" type="submit">Submit form</button>
+		</form>
+
+		<script>
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		(function() {
+		  'use strict';
+		  window.addEventListener('load', function() {
+		    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+		    var forms = document.getElementsByClassName('needs-validation');
+		    // Loop over them and prevent submission
+		    var validation = Array.prototype.filter.call(forms, function(form) {
+		      form.addEventListener('submit', function(event) {
+		        if (form.checkValidity() === false) {
+		          event.preventDefault();
+		          event.stopPropagation();
+		        }
+		        form.classList.add('was-validated');
+		      }, false);
+		    });
+		  }, false);
+		})();
+		</script>
+	</div>
+	
+
+	<hr>
+	<div class="footer" style="font-family: Arial">
+		<p>Copyright © 2018 Trojan Mingle Inc. All rights reserved.</p>
+	</div>
+</body>
+</html>

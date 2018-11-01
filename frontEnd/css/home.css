@@ -1,0 +1,64 @@
+h1{
+	text-align: center;
+	line-height: 100px;
+	margin-bottom: 0px;
+}
+
+.mainNavBar{
+	background-color: #a70000;
+	font-family: Helvetica;
+}
+
+.footer{
+	color: grey;
+	font-size: 0.8em;
+	text-align: center;
+	line-height: 10px;
+}
+
+._note {
+	font-family: Arial;
+	color: grey;
+}
+
+#header{
+	padding-top: 100px;
+	background-image: url(../HahnPlaza_2014_WEB.jpg);
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 400px;
+    
+    text-shadow: 2px 2px black, 2px 2px black, 2px 2px black, 2px 2px black;
+    font-size: 4.8em;
+    text-align: center;
+}
+
+#mainIntro {
+	height: 340px;
+	width: 800px;
+	margin: auto;
+	margin-top: 30px;
+
+	background-image: url(../example.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed;*/
+	background-position: center;
+
+	border-radius: 8px;
+
+	color: gold;
+	font-size: 3.0em;
+	text-shadow: 2px 2px black, 2px 2px black, 2px 2px black, 2px 2px black;
+}
+
+@font-face {
+  font-family: 'myFont_cereal';
+  src: url('../fonts/AirbnbCereal-Black.ttf')  format('truetype');
+}
+
+body {
+  font-family: 'myFont_cereal', Helvetica, sans-serif;
+}
