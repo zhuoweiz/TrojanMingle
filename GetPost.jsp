@@ -52,7 +52,7 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 		if (!rs.next()) {// If user doesnt exist in our database
 			
 		
-			insertTableSQL = "INSERT INTO userdata"
+			insertTableSQL = "INSERT INTO Users"
 					+ "(fname, email, picLink, age, major, hashedpw,gender, yr, standing,idealDate, lastLogin) VALUES"
 					+ "(?,?,?,?,?,?,?,?,?,?,?)";
 			
