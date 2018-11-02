@@ -75,6 +75,9 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 			
 			
 			preparedStatement.executeUpdate();
+		} else {
+			System.out.println("User already exists in the database");
+		}
 			} catch (SQLException sqle) {
 	      	    	
 	    	System.out.println (sqle.getMessage());
