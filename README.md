@@ -1,2 +1,4 @@
 # TrojanMingle
-csci201
+## For csci201 final project
+
+## 
