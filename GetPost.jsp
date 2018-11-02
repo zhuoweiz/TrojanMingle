@@ -76,10 +76,10 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 			
 			preparedStatement.executeUpdate();
 			} catch (SQLException sqle) {
-	        System.out.println("Here1");	    	
+	      	    	
 	    	System.out.println (sqle.getMessage());
 	    } catch (ClassNotFoundException cnfe) {
-	        System.out.println("Here2");	    	
+	        	    	
 	    	System.out.println (cnfe.getMessage());
 	    } finally {
 	    	try {
@@ -93,7 +93,7 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 	    			conn.close();
 	    		}
 	    	} catch (SQLException sqle) {
-		        System.out.println("Here3");
+		       
 	    		System.out.println(sqle.getMessage());
 	    	}
 	    }
