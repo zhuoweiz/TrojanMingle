@@ -80,38 +80,41 @@
 		<form class="needs-validation" novalidate>
 		  <div class="form-row">
 		    <div class="col-md-4 mb-3">
-		      <label for="validationCustom01">First name</label>
-		      <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
+		      <label for="validationCustom01">Full name</label>
+		      <input type="text" class="form-control" id="validationCustom01 _fullnameID" placeholder="First name" value="" required>
 		      <div class="valid-feedback">
 		        Looks good!
 		      </div>
 		    </div>
-		    <div class="col-md-4 mb-3">
-		      <label for="validationCustom02">Last name</label>
-		      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="" required>
-		      <div class="valid-feedback">
-		        Looks good!
-		      </div>
-		    </div>
+
 		    <div class="col-md-4 mb-3">
 		      <label for="validationCustomUsername">USC Email</label>
 		      <div class="input-group">
 		        
-		        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+		        <input type="text" class="form-control" id="validationCustomUsername _emailID" placeholder="Username" aria-describedby="inputGroupPrepend" required>
 		        <div class="input-group-append">
-		            <span class="input-group-text" id="basic-addon2">@usc.com</span>
+		            <span class="input-group-text" id="basic-addon2">@usc.edu</span>
 		          </div>
 		        <div class="invalid-feedback">
 		          Please choose a username.
 		        </div>
 		      </div>
 		    </div>
+
+		    <div class="col-md-4 mb-3">
+		      <label for="validationCustom02">Password</label>
+		      <input type="text" class="form-control" id="validationCustom02 _pwID" placeholder="Last name" value="" required>
+		      <div class="valid-feedback">
+		        Looks good!
+		      </div>
+		    </div>
+		    
 		  </div>
 		  <div class="form-row">
 
 		    <div class="col-md-3 mb-3">
 		      <label for="validationCustom03">Year</label>
-		      <select class="custom-select" id="inputGroupSelect01" required>
+		      <select class="custom-select" id="inputGroupSelect01 _yearID" required>
   		  	    <option selected>Choose...</option>
   		  	    <option value="1">Freshman</option>
   		  	    <option value="2">Sophomore</option>
@@ -125,14 +128,14 @@
 		    </div>
 		    <div class="col-md-3 mb-3">
 		      <label for="validationCustom04">Age</label>
-		      <input type="number" class="form-control" id="validationCustom04" placeholder="Age.." required>
+		      <input type="number" class="form-control" id="validationCustom04 _ageID" placeholder="Age.." required>
 		      <div class="invalid-feedback">
 		        Please provide a valid state.
 		      </div>
 		    </div>
 		    <div class="col-md-3 mb-3">
 		      <label for="validationCustom05">Major</label>
-		      <select class="custom-select" id="inputGroupSelect01" required>
+		      <select class="custom-select" id="inputGroupSelect01 _majorID" required>
 			    <option selected>Choose...</option>
 			    <option value="1">Computer Science</option>
 			    <option value="2">Business Administration</option>
@@ -142,7 +145,7 @@
 
 	        <div class="col-md-3 mb-3">
 	          <label for="validationCustom05">Gender</label>
-	          <select class="custom-select" id="inputGroupSelect01" required>
+	          <select class="custom-select" id="inputGroupSelect01 _genderID" required>
 	            <option selected>Choose...</option>
 	            <option value="1">Male</option>
 	            <option value="2">Female</option>
@@ -156,43 +159,43 @@
 
 
 	  		  	<div class="custom-control custom-checkbox _sadBox">
-	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1 _movie">
 	  		  	  <label class="custom-control-label" for="customCheck1">Movie</label>
 	  		  	</div>
 
 	  		  	<div class="custom-control custom-checkbox _sadBox">
-	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
-	  		  	  <label class="custom-control-label" for="customCheck1">Coffee</label>
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck2 _coffee">
+	  		  	  <label class="custom-control-label" for="customCheck2">Coffee</label>
 	  		  	</div>
 
 	  		  	<div class="custom-control custom-checkbox _sadBox">
-	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
-	  		  	  <label class="custom-control-label" for="customCheck1">Breakfast</label>
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck3 _breakfast">
+	  		  	  <label class="custom-control-label" for="customCheck3">Breakfast</label>
 	  		  	</div>
 
 	  		  	<div class="custom-control custom-checkbox _sadBox">
-	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
-	  		  	  <label class="custom-control-label" for="customCheck1">Lunch</label>
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck4 _lunch">
+	  		  	  <label class="custom-control-label" for="customCheck4">Lunch</label>
 	  		  	</div>
 
 	  		  	<div class="custom-control custom-checkbox _sadBox">
-	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
-	  		  	  <label class="custom-control-label" for="customCheck1">Dinner</label>
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck5 _dinner">
+	  		  	  <label class="custom-control-label" for="customCheck5">Dinner</label>
 	  		  	</div>
 
 	  		  	<div class="custom-control custom-checkbox _sadBox">
-	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
-	  		  	  <label class="custom-control-label" for="customCheck1">Concert</label>
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck6 _concert">
+	  		  	  <label class="custom-control-label" for="customCheck6">Concert</label>
 	  		  	</div>
 
 	  		  	<div class="custom-control custom-checkbox _sadBox">
-	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
-	  		  	  <label class="custom-control-label" for="customCheck1">Sport</label>
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck7 _sport">
+	  		  	  <label class="custom-control-label" for="customCheck7">Sport</label>
 	  		  	</div>
 
 	  		  	<div class="custom-control custom-checkbox _sadBox">
-	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck1">
-	  		  	  <label class="custom-control-label" for="customCheck1">Game</label>
+	  		  	  <input type="checkbox" class="custom-control-input " id="customCheck8 _game">
+	  		  	  <label class="custom-control-label" for="customCheck8">Game</label>
 	  		  	</div>
 	  		    <!-- <div class="col-md-3 mb-3">
 		              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Movie" aria-describedby="inputGroupPrepend2" required>
