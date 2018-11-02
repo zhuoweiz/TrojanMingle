@@ -43,7 +43,7 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 					
 		preparedStatement.executeUpdate();
         
-        check = "SELECT * from userdata where userID='" + liked  + "' and liked= '" + userID + "'";
+        check = "SELECT * from Matches where userID='" + liked  + "' and liked= '" + userID + "'";
 		preparedStatement = conn.prepareStatement(check);  
 		rs = preparedStatement.executeQuery();
 		
