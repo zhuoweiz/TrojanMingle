@@ -1,3 +1,5 @@
+
+<script>
 var serve = "Servlet";
 var requeststr = "";
 requeststr += "fname="+ fname;
@@ -16,9 +18,9 @@ var xhttp = new XMLHttpRequest();
 xhttp.open("POST", serve, true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhttp.send(requeststr);
+</script>
 
-
-
+<%
 protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String fname = request.getParameter("fname");
 	String email = request.getParameter("email");
@@ -103,3 +105,4 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 	    // --------------------------------------------------------------------->
 	}
 }
+%>
