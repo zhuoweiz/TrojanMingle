@@ -1,3 +1,4 @@
+package user;
 
 public class User {
 	
@@ -51,5 +52,11 @@ public class User {
 
 	public int getYear() {
 		return year;
+	}
+	
+	public String toString() {
+		return "<p>"+name+"</p><p>"+gender+"</p><p>"+age+"</p><p>"+bio+"</p><p>"+major
+				+"</p><p>"+standing+"</p><p>"+year+"</p><p>"+idealDate+"</p>";
+		//not including pic in tostring because it would just be the url
 	}
 }
