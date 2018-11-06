@@ -1,5 +1,8 @@
 
 <script>
+// PUTTING A NEW USER WHO SIGNS UP INTO THE DATABASE
+// CREATE USER SERVLET on diagram
+	
 var serve = "Servlet";
 var requeststr = "";
 requeststr += "fname="+ fname;
@@ -82,8 +85,13 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 			
 			
 			preparedStatement.executeUpdate();
+			
+			
+			// REDIRECT TO BROWSE PAGE
+			
 		} else {
 			System.out.println("User already exists in the database");
+			// SHOW ERROR MESSAGE THROUGH AJAX CALLBACK?
 		}
 			} catch (SQLException sqle) {
 	      	    	
