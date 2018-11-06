@@ -3,10 +3,11 @@ package user;
 public class User {
 	
 	private String name, profilePic, bio, major, standing, gender, idealDate;
-	private int age, year;
+	private int userID, age, year;
 	
-	public User(String name, String profilePic, String bio, String major, String standing, 
+	public User(int userID, String name, String profilePic, String bio, String major, String standing, 
 			String gender, String idealDate, int age, int year) {
+		this.userID = userID;
 		this.name = name;
 		this.profilePic = profilePic;
 		this.bio = bio;
@@ -18,6 +19,10 @@ public class User {
 		this.year = year;
 	}
 
+	public int getUserID() {
+		return userID;
+	}
+	
 	public String getName() {
 		return name;
 	}
