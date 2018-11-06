@@ -1,4 +1,5 @@
 <script>
+// OLD VERSION: UPDATED VERSION OF THIS SERVLET CALLED MatchServlet
 var serve = "Match_servlet?";
 var requeststr = "";
 requeststr += "userID="+ userID;
