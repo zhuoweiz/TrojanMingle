@@ -199,9 +199,12 @@
 
 	  	    <div class="form-group">
 	      	    <label for="_uploadAnImage">A shining photo of you (<span style="color: orangered;">strongly recommended</span>)</label>
-	      	    <input type="hidden" id="avatar_url" name="supply[s_photoUrl]" value="/images/default.png">
-	      	    <input type="file" accept="image/*" class="form-control-file" id="_uploadAnImage" value="/images/default.png"><span class="_note">(only image files accepted)</span>
+	      	    <input type="hidden" id="avatar_url" name="imgurl" value="/images/default.png">
+	      	    <input type="file" accept="image/*" class="form-control-file" id="_uploadAnImage" value=""><span class="_note">(only image files accepted)</span>
+	      	    <button type="button" onclick="photoUpload()">upload</button>
+	      	    <span id="_uploadStatus" style="font-family: arial; color: red"></span>
 	      	  </div>
+
 		  
 		  <div class="form-group">
 		    <div class="form-check">
@@ -245,5 +248,7 @@
 	<div class="footer" style="font-family: Arial">
 		<p>Copyright © 2018 Trojan Mingle Inc. All rights reserved.</p>
 	</div>
+
+	<script type="text/javascript" src="js/auth.js"></script>
 </body>
 </html>

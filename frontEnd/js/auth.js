@@ -27,7 +27,7 @@ function signup() {
 	requeststr += "&bio=" + bio;
 
 	var xhttp = new XMLHttpRequest();
-	xhttp.open("POST", , true);
+	xhttp.open("POST", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send(requeststr);
 
@@ -41,9 +41,9 @@ function signin() {
 	var requeststr = "/Signin?" + "emaial=" + email + "&pw=" + pw;
 
 	var signinxhttp = new XMLHttpRequest();
-	signinxhttp.open("POST", , true);
+	signinxhttp.open("POST", true);
 	signinxhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	signinxhttp.send(requeststr
+	signinxhttp.send(requeststr);
 
 	sessionStorage.setItem('email', email);
 }
@@ -63,3 +63,45 @@ function signin() {
 function signout() {
 	sessionStorage.removeItem('email');
 }
+
+var previousFilename = "";
+function photoUpload() {
+	const ref = firebase.storage().ref();
+
+	const file = $('#_uploadAnImage').get(0).files[0];
+	if(file==null) {
+		$("#_uploadStatus").text("no file to upload")
+		console.log("no file chosen....");
+	}else {
+		$("#_uploadStatus").css("color","green")
+		$("#_uploadStatus").text("1 file chosen")
+
+		if(previousFilename!=file.name) {
+			previousFilename = file.name
+			const name = (+new Date()) + '-' + file.name;
+
+			const metadata = {
+			  contentType: file.type
+			};
+			const task = ref.child(name).put(file, metadata);
+			task
+			  .then(snapshot => snapshot.ref.getDownloadURL())
+			  .then((url) => {
+			    console.log(url);
+			    document.querySelector('#avatar_url').value = url;
+			    $("#_uploadStatus").text("file uploaded")
+			  })
+			  .catch(console.error);
+		}else {
+			$("#_uploadStatus").css("color","red")
+			$("#_uploadStatus").text("file already uploaded...")
+			console.log("file already uploaded...")
+		}
+	}
+}
+
+
+
+
+
+
