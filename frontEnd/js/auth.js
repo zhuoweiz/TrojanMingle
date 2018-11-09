@@ -1,3 +1,5 @@
+
+
 function signup() {
 	var fname = $('#_fullnameID').val();
 	var email = $('#_emailID').val();
@@ -28,4 +30,36 @@ function signup() {
 	xhttp.open("POST", , true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send(requeststr);
+
+	signin();
+}
+
+
+function signin() {
+	var email = $('#_signinEmailID').val();
+
+	var requeststr = "/Signin?" + "emaial=" + email + "&pw=" + pw;
+
+	var signinxhttp = new XMLHttpRequest();
+	signinxhttp.open("POST", , true);
+	signinxhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	signinxhttp.send(requeststr
+
+	sessionStorage.setItem('email', email);
+}
+
+// // Save data to sessionStorage
+// sessionStorage.setItem('key', 'value');
+
+// // Get saved data from sessionStorage
+// var data = sessionStorage.getItem('key');
+
+// // Remove saved data from sessionStorage
+// sessionStorage.removeItem('key');
+
+// // Remove all saved data from sessionStorage
+// sessionStorage.clear();
+
+function signout() {
+	sessionStorage.removeItem('email');
 }
