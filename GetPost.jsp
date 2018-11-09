@@ -1,3 +1,8 @@
+
+<script>
+// PUTTING A NEW USER WHO SIGNS UP INTO THE DATABASE
+// CREATE USER SERVLET on diagram
+	
 var serve = "Servlet";
 var requeststr = "";
 requeststr += "fname="+ fname;
@@ -11,20 +16,23 @@ requeststr += "&yr=" + yr;
 requeststr += "&standing=" + standing;
 requeststr += "&idealDate=" + idealDate;
 requeststr += "&lastLogin=" + lastLogin;
+requeststr += "&bio=" + bio;
 
 var xhttp = new XMLHttpRequest();
 xhttp.open("POST", serve, true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhttp.send(requeststr);
+</script>
 
-
-
+<%
 protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String fname = request.getParameter("fname");
 	String email = request.getParameter("email");
 	String picLink = request.getParameter("picLink");
 	String age = request.getParameter("age");
 	String major = request.getParameter("major");
+	
+	//deal with hashing this password somehow maybe?
 	String hashedpw = request.getParameter("hashedpw");
 	String gender = request.getParameter("gender");
 	
@@ -45,21 +53,22 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
     	Class.forName("com.mysql.jdbc.Driver");
         conn = DriverManager.getConnection("jdbc:mysql://localhost/userdatabase?user=root&password=root&useSSL=false");
         
-        String insertTableSQL = "SELECT * from userdata where email='" + email + "'";
+	//checking if user already exists in our database
+        String insertTableSQL = "SELECT * from Users where email='" + email + "'";
 		preparedStatement = conn.prepareStatement(insertTableSQL);  
 		rs = preparedStatement.executeQuery();
 		
-		if (!rs.next()) {// If user doesnt exist in our database
+		if (!rs.next()) {// If user doesn't already exist in our database
 			
 		
 			insertTableSQL = "INSERT INTO Users"
-					+ "(fname, email, picLink, age, major, hashedpw,gender, yr, standing,idealDate, lastLogin) VALUES"
-					+ "(?,?,?,?,?,?,?,?,?,?,?)";
+					+ "(fname, email, picLink, age, major, hashedpw, gender, yr, standing, idealDate, lastLogin, bio) VALUES"
+					+ "(?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			preparedStatement = conn.prepareStatement(insertTableSQL);  
 	        
         	
-        	//Inserting Users's info
+        	//Inserting User's info
 			preparedStatement.setString(1, fname);
 			preparedStatement.setString(2, email);
 			preparedStatement.setString(3, picLink);
@@ -72,11 +81,17 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 			preparedStatement.setString(9, standing);
 			preparedStatement.setString(10, idealDate);
 			preparedStatement.setString(11, lastLogin);
+			preparedStatement.setString(12, bio);
 			
 			
 			preparedStatement.executeUpdate();
+			
+			
+			// REDIRECT TO BROWSE PAGE
+			
 		} else {
 			System.out.println("User already exists in the database");
+			// SHOW ERROR MESSAGE THROUGH AJAX CALLBACK?
 		}
 			} catch (SQLException sqle) {
 	      	    	
@@ -103,3 +118,4 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 	    // --------------------------------------------------------------------->
 	}
 }
+%>
