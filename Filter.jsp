@@ -22,12 +22,18 @@
    <script>
 	   
 	    var gender = "Male";
-	    var age = 21;
-	    var major = "Computer Science";
+	    var age1 = 20;
+	    var age2 = "Age...";
+	    var idealDate = "Choose...";
+	    var yr ="5";
+	    var major = "Choose...";
 	    var req = "Filter?";
 	    req += "&gender="+ gender;
-	    req += "&age="+ age;
+	    req += "&age1="+ age1;
+	    req +=  "&age2="+age2;
 	    req += "&major="+ major;
+	    req += "&yr="+ yr;
+	    req += "&idealDate="+ idealDate;
 	    var xhttp = new XMLHttpRequest();
 	 	xhttp.open("POST", req, false);
 	 	xhttp.send(); 
@@ -37,3 +43,4 @@
     
   </body>
 </html>
+
