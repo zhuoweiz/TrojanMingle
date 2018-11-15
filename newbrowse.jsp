@@ -1,5 +1,3 @@
-<!-- JSP stuff below -->
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.ArrayList" import="user.User"%>
 
@@ -39,13 +37,13 @@
 		int userID = 3; //(int)request.getAttribute("userID");
 		
 		//assuming parameter called "users" is an ArrayList of User objects passed from servlet	
-		ArrayList<User> users = new ArrayList<User>(); //(ArrayList<User>)request.getAttribute("users");
-		users.add(new User(1, "Jeff", "jeff.jpg", "I am a CS teacher and proud father of soccer stars", "Computer Science", "Graduate", "Male", 
+		ArrayList<User> users = (ArrayList<User>)request.getAttribute("users");//new ArrayList<User>();
+		/* users.add(new User(1, "Jeff", "jeff.jpg", "I am a CS teacher and proud father of soccer stars", "Computer Science", "Graduate", "Male", 
 			"coffee", 40, 3));
 		users.add(new User(2, "Michael", "michael.jpg", "I am a CS teacher and love algorithms", "Computer Science", "Undergraduate", "Male", 
 				"dinner", 35, 2)); 
 		users.add(new User(3, "Sandra", "sandra.jpg", "I am a CS teacher and love CS104 and pointers", "Computer Engineering", "Graduate", "female", 
-				"sports", 30, 3));
+				"sports", 30, 3)); */
 		//so apostrophes are going to be an issue, if we want to care about that
 		
 	%>
@@ -62,12 +60,42 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
-	        <a class="nav-link" href="#" style="color: gold;">Home <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="home.jsp" style="color: gold;">Home <span class="sr-only">(current)</span></a>
 	      </li>
 	    </ul>
-	    <!-- <span class="nav-item">
-        	<a class="nav-link" style="padding-left: 0px; color: darkgrey; margin-top: 5px; margin-bottom: 5px;" href="">Browse as a guest</a>
-    	</span> -->
+	    
+	    <script>
+		  //for redirect to chat page
+			function toChatPage() {
+				
+				var userID = 1; //document.getElementById("userID").value;
+				console.log("userID: "+userID);
+				/*
+				var xhttp = new XMLHttpRequest();
+				xhttp.open("POST", "ChatServlet", true);
+				xhttp.onreadystatechange = function() {
+					
+					//callback function
+				} 
+				
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("userID="+userID); */
+				
+				var xhttp = new XMLHttpRequest();	
+				xhttp.open("GET", "ChatServlet?userID="+userID, true);
+				
+				//calls onreadystatechange more than once
+				xhttp.onreadystatechange = function() {
+				
+				} 
+				
+				xhttp.send();
+			}
+	    </script>
+	    
+	    <span class="nav-item">
+        	<a class="nav-link" style="padding-left: 0px; color: darkgrey; margin-top: 5px; margin-bottom: 5px;" onclick="return toChatPage();">Chat</a>
+    	</span>
 	    <span class="nav-item">
         	<a class="nav-link" style="padding-left: 0px; color: white; margin-top: 5px; margin-bottom: 5px;" href="">Logged in as XXX</a>
     	</span>
@@ -333,6 +361,7 @@
 			right();
 	    }
 	}
+	
 	
 </script>
 
