@@ -40,6 +40,8 @@ public class ChatServlet extends HttpServlet {
 	    ResultSet userIDs = null;
 	    ResultSet messages = null;
 	    Statement st = null;
+	    
+	    Statement newst = null;
 		
 		//assuming userID is passed in with AJAX request
 		int userID = Integer.parseInt(request.getParameter("userID"));
@@ -53,44 +55,59 @@ public class ChatServlet extends HttpServlet {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/trojanmingle?user=root&password=root&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC");
 			st = conn.createStatement();
 	        
+			
+			newst = conn.createStatement();
 	        //select the emails (distinct keys) from two way matches with the current user
 	        twoway = st.executeQuery("SELECT DISTINCT u.email FROM Matches m, Users u WHERE m.userID="+userID+" AND u.userID=m.liked AND (u.email) IN " + 
 	       		"(SELECT u.email FROM Matches m, Users u WHERE m.liked="+userID+" AND u.userID=m.userID);");
 			
-	        //LITERALLY CAN'T DO THIS BECAUSE I CAN'T REUSE RESULT SETS
-	        // AND I ALSO CAN'T DECLARE THEM DYNAMICALLY
+	        ArrayList<ResultSet> sets = new ArrayList<ResultSet>();
+	        ArrayList<ResultSet> users = new ArrayList<ResultSet>();
+	        int counter = -1;
+	        int userCounter = -1;
 	        
-	        //for all people current user has two way matches with
+	        //for all people current user has two-way match with
 	        while(twoway.next()) {
 	        	String email = twoway.getString("email");
+	        	
 	        	//get the userID and name associated with that email
-	        	userIDs = st.executeQuery("SELECT userID, fname FROM Users WHERE email='"+email+"';");
-	        	userIDs.first(); //moves cursor to first result (should only be one result)
-	        	int likedID = userIDs.getInt("userID");
-	        	String fname = userIDs.getString("fname");
+	        	users.add(newst.executeQuery("SELECT userID, fname FROM Users WHERE email='"+email+"';"));
+	        	userCounter++;
+	        	users.get(userCounter).first(); //should only be one user associated with given email
+	        	int likedID = users.get(userCounter).getInt("userID"); //userIDs.getInt("userID");
+	        	String fname = users.get(userCounter).getString("fname"); //userIDs.getString("fname");
 	        	
-	        	//ResultSet messages = null;
+	        	//System.out.println("userID: "+likedID+"\nname: "+fname);
+
 	        	//get all messages sent and recieved between the two users
-	        	messages = st.executeQuery("SELECT message, senderID FROM MessageHistory WHERE (senderID="+userID+" AND receiverID="+likedID+") "
-	        			+ "OR (senderID="+likedID+" AND receiverID="+userID+") ORDER BY chatID;");
+	        	sets.add(newst.executeQuery("SELECT message, senderID FROM MessageHistory WHERE (senderID="+userID+" AND receiverID="+likedID+") "
+	        			+ "OR (senderID="+likedID+" AND receiverID="+userID+") ORDER BY chatID;"));
+	        	counter++;
 	        	
-	        	//create new chat for this match pair
 	        	Chat ch = new Chat(fname, new ArrayList<Message>());
 	        	
-	        	//loop through all messages between current user and matched user
-	        	while(messages.next()) {
+	        	while(sets.get(counter).next()) {
 	        		
-	        		int senderID = messages.getInt("senderID");
-	        		String message = messages.getString("message");
+	        		int senderID = sets.get(counter).getInt("senderID");
+	        		String message = sets.get(counter).getString("message");
 	        		
+	        		//System.out.println("name: "+fname+"\nmessage: "+message);
 	        		//add message to message list
 	        		ch.addMessage(new Message(senderID, message));
 	        	}
 	        	
 	        	chats.add(ch); //add current chat to list of chats
-	        	
-	        	//messages.close();
+	        	//sets.get(counter).close();
+	        }
 	        
+	        //printing out all messages for debugging purposes
+	        for(int i = 0; i < chats.size(); i++) {
+	        	ArrayList<Message> msgs = chats.get(i).getMessages();
+	        	System.out.println(chats.get(i).getName());
+	        	
+	        	for(int j = 0; j < msgs.size(); j++) {
+	        		System.out.println(msgs.get(j));
+	        	}
 	        }
 	        
 	        //send list of chats to chat.jsp
