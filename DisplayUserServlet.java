@@ -79,6 +79,9 @@ public class DisplayUserServlet extends HttpServlet {
 				  System.out.println("test");	
 			      request.setAttribute("users", results);
 			      
+			    //so browse page knows whether this is a guest or a user
+			      request.setAttribute("guest", guest); 
+			      
 			      
 	        } catch(SQLException sqle) {
 				System.out.println("sqle: " + sqle.getMessage());	

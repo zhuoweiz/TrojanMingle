@@ -264,7 +264,7 @@
 				<div class="cardBox" style="">
 					<div class="card" style="width: 18rem; margin: auto;">
 						<div class="card-img-box" style="width: 286px; height: 240px; overflow: hidden;">
-							<img class="card-img-top" src="https://pressroom.usc.edu/files/2015/01/JeffreyMiller-cropped-1024x999.jpg" alt="Card image cap">
+							<img class="card-img-top" id="profilepic" src="<%= users.get(0).getProfilePic() %>">
 						</div>
 					  
 					  <div class="card-body">
@@ -278,6 +278,7 @@
 						<% for(int i = 1; i < users.size(); i++) { %>
 							<div id="<%= i %>" style="display: none;"><%= users.get(i).toString() %></div>
 							<div id="<%= i %>id" style="display: none;"><%= users.get(i).getUserID() %></div>
+							<div id="<%= i %>pic" style="display: none"><%= users.get(i).getProfilePic() %></div>
 						<% } %>
 						
 						<!-- put current userID in hidden form field; make sure signin servlet passing guest parameter -->
@@ -313,12 +314,16 @@
 			document.getElementById("info").innerHTML = document.getElementById(String(count)).innerHTML;
 			document.getElementById("otherID").innerHTML = document.getElementById(String(count)+"id").innerHTML;
 			
+			//change profile pic
+			document.getElementById("profilepic").src = document.getElementById(String(count)+"pic").innerHTML;
+			
 			console.log("count: "+count+"\nuserID: "+document.getElementById(String(count)+"id").innerHTML);
 			
 			count++;
 		}
 		else { 
 			document.getElementById("info").innerHTML = "No more users to display";
+			document.getElementById("profilepic").src = ""; //empty string for src
 		 }
 	}
 	
