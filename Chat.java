@@ -8,10 +8,12 @@ public class Chat {
 	//insertion purposes (when inserting messages into database)
 	//private ArrayList<Integer> userIDs;
 	private String name; //names for name on chat sidebar
+	private String profilepic;
 	private ArrayList<Message> messages;
 	
-	public Chat(String n, ArrayList<Message> m) {
+	public Chat(String n, String p, ArrayList<Message> m) {
 		//userIDs = u;
+		profilepic = p;
 		name = n;
 		messages = m;
 	}
@@ -30,5 +32,9 @@ public class Chat {
 
 	public ArrayList<Message> getMessages() {
 		return messages;
+	}
+	
+	public String getProfilePic() {
+		return profilepic;
 	}
 }
