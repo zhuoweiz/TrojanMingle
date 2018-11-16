@@ -78,7 +78,7 @@
 
 	<h1>Sign in!</h1>
 	<div id="_signinBox">
-		<form class="needs-validation" novalidate>
+		<form class="needs-validation" action="SignIn" method="POST" novalidate>
 		    <div class="mb-3">
 		      <label for="validationCustomUsername">USC Email</label>
 		      <div class="input-group">
@@ -97,7 +97,7 @@
 		      <label for="validationCustomUsername">Password</label>
 		      <div class="input-group">
 		     
-		        <input type="text" class="form-control" name="pw" id="validationCustomUsername _signinPwID" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+		        <input type="password" class="form-control" name="pw" id="validationCustomUsername _signinPwID" placeholder="Password" aria-describedby="inputGroupPrepend" required>
 		        <div class="invalid-feedback">
 		          Please set your password.
 		        </div>

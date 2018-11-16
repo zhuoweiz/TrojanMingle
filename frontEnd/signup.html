@@ -72,6 +72,9 @@
 		      <div class="valid-feedback">
 		        Looks good!
 		      </div>
+		      <div class="invalid-feedback">
+		        Please fill your name.
+		      </div>
 		    </div>
 
 		    <div class="col-md-3 mb-3">
@@ -83,16 +86,22 @@
 		            <span class="input-group-text" id="basic-addon2">@usc.edu</span>
 		          </div>
 		        <div class="invalid-feedback">
-		          Please choose a username.
+		          Please fill your usc username.
+		        </div>
+		        <div class="valid-feedback">
+		          Looks good!
 		        </div>
 		      </div>
 		    </div>
 
 		    <div class="col-md-3 mb-3">
 		      <label for="validationCustom02">Password</label>
-		      <input type="text" name="hashedpw" class="form-control" id="validationCustom02 _pwID" placeholder="Last name" value="" required>
+		      <input type="password" name="hashedpw" class="form-control" id="validationCustom02 _pwID" placeholder="Last name" value="" required>
 		      <div class="valid-feedback">
 		        Looks good!
+		      </div>
+		      <div class="invalid-feedback">
+		        Needs a password.
 		      </div>
 		    </div>
 
@@ -111,7 +120,7 @@
 		    <div class="col-md-3 mb-3">
 		      <label for="validationCustom03">Year</label>
 		      <select class="custom-select" name="yr" id="inputGroupSelect01 _yearID" required>
-  		  	    <option value="0" selected>Choose...</option>
+  		  	    <option value="0" selected disabled hidden>Choose...</option>
   		  	    <option value="1">1</option>
   		  	    <option value="2">2</option>
   		  	    <option value="3">3</option>
@@ -130,7 +139,7 @@
 		    <div class="col-md-3 mb-3">
 		      <label for="validationCustom05">Major</label>
 		      <select class="custom-select" name="major" id="inputGroupSelect01 _majorID" required>
-			    <option selected>Choose...</option>
+			    <option value="0" selected disabled hidden>Choose...</option>
 			    <option value="Computer Science">Computer Science</option>
 			    <option value="Business Administration">Business Administration</option>
 			    <option value="Double">Double</option>
@@ -140,7 +149,7 @@
 	        <div class="col-md-3 mb-3">
 	          <label for="validationCustom05">Gender</label>
 	          <select class="custom-select" name="gender" id="inputGroupSelect01 _genderID" required>
-	            <option selected>Choose...</option>
+	            <option value="0" selected disabled hidden>Choose...</option>
 	            <option value="Male">Male</option>
 	            <option value="Female">Female</option>
 	            <option value="Other">Other</option>
