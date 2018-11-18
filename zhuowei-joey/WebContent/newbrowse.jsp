@@ -79,7 +79,9 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
-	        <a class="nav-link" href="home.jsp" style="color: gold;">Home <span class="sr-only">(current)</span></a>
+	      	<!-- zhuowei edit -->
+	        <a class="nav-link" href="Home.jsp" style="color: gold;">Home <span class="sr-only">(current)</span></a>
+	        <!-- end zhuowei edit -->
 	      </li>
 	    </ul>
 	    
@@ -119,8 +121,9 @@
     	</span>
     	<% } %>
 	    <span class="nav-item">
-	    	<!-- zhuowei edit -->
-        	<a class="nav-link" style="padding-left: 0px; color: white; margin-top: 5px; margin-bottom: 5px;" onclick="signout();">Sign Out</a>
+	    	<!-- zhuowei's edit -->
+        	<a class="nav-link" style="padding-left: 0px; color: white; margin-top: 5px; margin-bottom: 5px;" onclick="signout();" href="Home.jsp">Sign Out</a>
+        	<!-- end zhuowei's edit -->
     	</span>
 	    <!-- <span class="nav-item">
         	<a class="nav-link" style="padding-left: 0px; color: white;" href="">Signup</a>

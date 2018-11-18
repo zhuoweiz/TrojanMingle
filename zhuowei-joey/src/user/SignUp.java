@@ -125,7 +125,7 @@ public class SignUp extends HttpServlet {
 					System.out.println("exception: " + e.getMessage());
 				}
 	        } else {
-	        	request.setAttribute("fail", "Invalid username or password");
+	        	request.setAttribute("fail", "User already exists");
 	        	RequestDispatcher dp = getServletContext().getRequestDispatcher("/Signup.jsp");
 				dp.forward(request,response);
 	            System.out.println("User already exists in the database");
