@@ -1,7 +1,9 @@
 # Make sure u change MySql PASSWORD
 
 ## edits
-1. newbrowse
+1. signup
+    - whole nav bar
+    - id="fail" tagged copy that line
 
 ## My files
 1. Signup.jsp
