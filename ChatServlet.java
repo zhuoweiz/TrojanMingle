@@ -71,11 +71,12 @@ public class ChatServlet extends HttpServlet {
 	        	String email = twoway.getString("email");
 	        	
 	        	//get the userID and name associated with that email
-	        	users.add(newst.executeQuery("SELECT userID, fname FROM Users WHERE email='"+email+"';"));
+	        	users.add(newst.executeQuery("SELECT userID, fname, picLink FROM Users WHERE email='"+email+"';"));
 	        	userCounter++;
 	        	users.get(userCounter).first(); //should only be one user associated with given email
 	        	int likedID = users.get(userCounter).getInt("userID"); //userIDs.getInt("userID");
 	        	String fname = users.get(userCounter).getString("fname"); //userIDs.getString("fname");
+	        	String profilepic = users.get(userCounter).getString("picLink");
 	        	
 	        	//System.out.println("userID: "+likedID+"\nname: "+fname);
 
@@ -84,7 +85,7 @@ public class ChatServlet extends HttpServlet {
 	        			+ "OR (senderID="+likedID+" AND receiverID="+userID+") ORDER BY chatID;"));
 	        	counter++;
 	        	
-	        	Chat ch = new Chat(fname, new ArrayList<Message>());
+	        	Chat ch = new Chat(fname, profilepic, new ArrayList<Message>());
 	        	
 	        	while(sets.get(counter).next()) {
 	        		
@@ -112,6 +113,7 @@ public class ChatServlet extends HttpServlet {
 	        
 	        //send list of chats to chat.jsp
 	        request.setAttribute("chats", chats);
+	        request.setAttribute("userID", userID);
 			      
 	        } catch(SQLException sqle) {
 				System.out.println("sqle: " + sqle.getMessage());	

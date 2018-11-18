@@ -116,23 +116,36 @@ public class Filter extends HttpServlet {
 	        } else {
 	        
                 rs.beforeFirst();
-		        ArrayList<String> results = new ArrayList<String>();
+			ArrayList<User> results = new ArrayList<User>();
 		        System.out.println("Here");
 		        while (rs.next()) {
-		        	String potential = rs.getString("fname");
-		        	System.out.println(potential);
-		        	results.add(potential);
+		        	User insert = new User(rs.getInt("userID"), rs.getString("fname"), 
+		        			rs.getString("picLink"), rs.getString("bio"), rs.getString("major"), 
+		        			rs.getString("standing"), rs.getString("gender"), rs.getString("idealDate"), rs.getInt("age"), rs.getInt("yr"));
+		        	        results.add(insert);
+		        	        System.out.println(rs.getString("fname"));
+		        	
 		        }
-		        for (int i = 0; i < results.size(); i++) {
-					
-			        query = "SELECT * from users where fname = '" + results.get(i) + "'";
-					preparedStatement = conn.prepareStatement(query);  
-					friends = preparedStatement.executeQuery();
-					friends.next();
-					String name = friends.getString("fname");
-					out.println("<figcaption id = \"cap\">" + name  + "</figcaption>");								
-				}					
+		        request.setAttribute("users", results);
+		       			
 				System.out.println("passed results...");
+		        //ArrayList<String> results = new ArrayList<String>();
+		        //System.out.println("Here");
+		        //while (rs.next()) {
+		        	//String potential = rs.getString("fname");
+		        //	System.out.println(potential);
+		        //	results.add(potential);
+		        //}
+		        //for (int i = 0; i < results.size(); i++) {
+					
+			  //      query = "SELECT * from users where fname = '" + results.get(i) + "'";
+			//		preparedStatement = conn.prepareStatement(query);  
+			//		friends = preparedStatement.executeQuery();
+			//		friends.next();
+			//		String name = friends.getString("fname");
+			//		out.println("<figcaption id = \"cap\">" + name  + "</figcaption>");								
+			//	}					
+			//	System.out.println("passed results...");
 	        }
 			
 	        

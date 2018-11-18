@@ -33,11 +33,16 @@
 	<%
 		int count = 1; //variable to keep track of which user we're on
 		
+		int userID = -1; //set userID to -1 to indicate guest status
+		
 		//assuming userID passed in from other servlet call redirecting to browse page
-		int userID = 3; //(int)request.getAttribute("userID");
+		//if user is NOT a guest, but logged in, change the userID to the actual userID
+		if(!(boolean)request.getAttribute("guest")) { 
+			userID = (int)request.getAttribute("userID");
+		}
 		
 		//assuming parameter called "users" is an ArrayList of User objects passed from servlet	
-		ArrayList<User> users = (ArrayList<User>)request.getAttribute("users");//new ArrayList<User>();
+		ArrayList<User> users = (ArrayList<User>)request.getAttribute("users"); //new ArrayList<User>(); //(ArrayList<User>)request.getAttribute("users");//
 		/* users.add(new User(1, "Jeff", "jeff.jpg", "I am a CS teacher and proud father of soccer stars", "Computer Science", "Graduate", "Male", 
 			"coffee", 40, 3));
 		users.add(new User(2, "Michael", "michael.jpg", "I am a CS teacher and love algorithms", "Computer Science", "Undergraduate", "Male", 
@@ -86,16 +91,19 @@
 				
 				//calls onreadystatechange more than once
 				xhttp.onreadystatechange = function() {
-				
+					
 				} 
 				
 				xhttp.send();
 			}
 	    </script>
 	    
+	    <!-- only show link to chat page if user is NOT a guest -->
+	    <% if(!(boolean)request.getAttribute("guest")) { %>
 	    <span class="nav-item">
-        	<a class="nav-link" style="padding-left: 0px; color: darkgrey; margin-top: 5px; margin-bottom: 5px;" onclick="return toChatPage();">Chat</a>
+        	<a class="nav-link" style="padding-left: 0px; color: darkgrey; margin-top: 5px; margin-bottom: 5px;" href="ChatServlet?userID=<%= userID %>">Chat</a> <%-- <%= userID %> --%>
     	</span>
+    	<% } %>
 	    <span class="nav-item">
         	<a class="nav-link" style="padding-left: 0px; color: white; margin-top: 5px; margin-bottom: 5px;" href="">Logged in as XXX</a>
     	</span>
@@ -256,7 +264,7 @@
 				<div class="cardBox" style="">
 					<div class="card" style="width: 18rem; margin: auto;">
 						<div class="card-img-box" style="width: 286px; height: 240px; overflow: hidden;">
-							<img class="card-img-top" src="https://pressroom.usc.edu/files/2015/01/JeffreyMiller-cropped-1024x999.jpg" alt="Card image cap">
+							<img class="card-img-top" id="profilepic" src="<%= users.get(0).getProfilePic() %>">
 						</div>
 					  
 					  <div class="card-body">
@@ -270,10 +278,13 @@
 						<% for(int i = 1; i < users.size(); i++) { %>
 							<div id="<%= i %>" style="display: none;"><%= users.get(i).toString() %></div>
 							<div id="<%= i %>id" style="display: none;"><%= users.get(i).getUserID() %></div>
+							<div id="<%= i %>pic" style="display: none"><%= users.get(i).getProfilePic() %></div>
 						<% } %>
 						
-						<!-- put current userID in hidden form field -->
-						<input type="hidden" id="userID" value="<%= userID %>">
+						<!-- put current userID in hidden form field; make sure signin servlet passing guest parameter -->
+					
+							<input type="hidden" id="userID" value="<%= userID %>">
+						
 						<!-- end Teagan's code -->
 
 					    <a href="#" class="btn btn-light" style="float: left; width: 120px;" onclick="return left();">&#8678; X like</a>
@@ -303,12 +314,16 @@
 			document.getElementById("info").innerHTML = document.getElementById(String(count)).innerHTML;
 			document.getElementById("otherID").innerHTML = document.getElementById(String(count)+"id").innerHTML;
 			
+			//change profile pic
+			document.getElementById("profilepic").src = document.getElementById(String(count)+"pic").innerHTML;
+			
 			console.log("count: "+count+"\nuserID: "+document.getElementById(String(count)+"id").innerHTML);
 			
 			count++;
 		}
 		else { 
 			document.getElementById("info").innerHTML = "No more users to display";
+			document.getElementById("profilepic").src = ""; //empty string for src
 		 }
 	}
 	
@@ -327,16 +342,19 @@
 		
 		console.log("current user: "+userID+"\nliked user: "+liked);
 		
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST", "MatchServlet", true);
-		xhttp.onreadystatechange = function() {
+		//only execute servlet call if the user is NOT a guest
+		if(userID != -1) {
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "MatchServlet", true);
+			xhttp.onreadystatechange = function() {
+				
+				//probably notify the current user here?
+				console.log("in callback function");
+			} 
 			
-			//probably notify the current user here?
-			console.log("in callback function");
-		} 
-		
-		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xhttp.send("userID="+userID+"&liked="+liked);
+			xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhttp.send("userID="+userID+"&liked="+liked);
+		}
 		
 		changeUserDisplayed();
 	}

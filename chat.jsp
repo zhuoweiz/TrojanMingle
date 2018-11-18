@@ -29,6 +29,43 @@
 </head>
 <body>
 
+	<%
+		//get list of chat objects and current userID from servlet redirect
+		ArrayList<Chat> chats = new ArrayList<Chat>(); //(ArrayList<Chat>)request.getAttribute("chats");
+		int userID = 1; //(int)request.getAttribute("userID");
+		
+		//dummy values to test front-end code
+		ArrayList<Message> m = new ArrayList<Message>();
+		m.add(new Message(2, "hey wanna analyze some algorithms?"));
+		m.add(new Message(1, "yeah sure"));
+		m.add(new Message(2, "cool what do you think of network flow"));
+		m.add(new Message(1, "it is okay"));
+		m.add(new Message(1, "i like locks and monitors way better")); //create new Message for each of these
+		
+		chats.add(new Chat("Michael", "https://firebasestorage.googleapis.com/v0/b/cs201-1389b.appspot.com/o/1542334936602-pik.png?alt=media&token=c8570ddd-6d46-45ee-a5a2-0a6a6650c24e", m)); //add sandra to chat also
+	
+		ArrayList<Message> s = new ArrayList<Message>();
+		s.add(new Message(3, "hi im sandra"));
+		chats.add(new Chat("Sandra", "https://firebasestorage.googleapis.com/v0/b/cs201-1389b.appspot.com/o/IMG_0053.PNG?alt=media&token=3751774d-5a66-4a5b-90db-471df4a74c7d", s));
+		
+	%>
+	
+	<script>
+		//changes which chat is displayed and highlighted gray based on which chat was clicked in sidebar
+		var previousChat = -1;
+		function changeChat(divClicked) {
+			console.log("in changeChat function");
+			document.getElementById("msg_history").innerHTML = document.getElementById("msg_history"+divClicked).innerHTML;
+			document.getElementById(String(divClicked)).classList.add("active_chat");
+			
+			if(previousChat != -1) {
+				document.getElementById(String(previousChat)).classList.remove("active_chat");
+			}
+			
+			previousChat = divClicked;
+		}
+	</script>
+
 	<nav class="navbar navbar-expand-lg navbar-light mainNavBar"  style="padding: 0px 0.5rem;">
 	  <!-- <a class="navbar-brand" href="#">Trojan Mingle</a> -->
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,8 +108,27 @@
 		                </span> </div>
 		            </div>
 		          </div>
-		          <div class="inbox_chat">
-		            <div class="chat_list active_chat">
+		          <div class="inbox_chat"> <!-- contains chat sidebar -->
+		          	<%
+		          		//code to create list of chats in sidebar
+		          		for(int i = 0; i < chats.size(); i++) {
+		          	%>
+		          			<!-- id corresponds to id of actual msg_historyi below -->
+		          			<div class="chat_people" id="<%= i %>" onclick="changeChat(<%= i %>)">
+				                <div class="chat_img"> <img src="<%= chats.get(i).getProfilePic() %>" alt="pic link"> </div>
+				                <div class="chat_ib">
+				                  <h5><%= chats.get(i).getName() %></h5>
+				                  <% ArrayList<Message> msgs = chats.get(i).getMessages(); %>
+				                  <p><%= msgs.get(msgs.size()-1).getMessage() %></p> <!-- get most recent message -->
+				                </div>
+				              </div>
+		          	<% 
+		          		}
+		          		
+		          	%>
+		          	
+		          
+		            <div class="chat_list">
 		              <div class="chat_people">
 		                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 		                <div class="chat_ib">
@@ -104,12 +160,54 @@
 		            </div>
 		          </div>
 		        </div>
-		        <div class="mesgs">
-		          <div class="msg_history"> <!-- here contains all messages from one chat -->
-		            
-		            <%
-		            	//put stuff here
+		        <div class="mesgs" id="messages">
+		        
+		        <%
+		            	//code for creating divs for message history with each person
+		            	for(int i = 0; i < chats.size(); i++) {
+		           			ArrayList<Message> messages = chats.get(i).getMessages();
+		           		%>
+		            		<!-- load all messages into a hidden div -->
+		            		<div id="msg_history<%= i %>" style="display: none;">
+		           <%
+		           			//loop through messages for each chat
+		           			for(int j = 0; j < messages.size(); j++) {
+		            			
+		           				//if this is a message sent by the current user
+		           				if(messages.get(j).getSenderID() == userID) { 
+		           	%>
+		            			<div class="outgoing_msg">
+					              <div class="sent_msg">
+					                <p><%= messages.get(j).getMessage() %></p>
+					                <!-- <span class="time_date"> 11:01 AM | June 9</span> --> 
+					              </div>
+					            </div>	
+		            				
+		            <%				
+		            			}
+		           				
+		           				else { //this is a message sent by the other user they matched with
+		           	%>
+		           					<div class="incoming_msg">
+						              <div class="incoming_msg_img"> <img src="<%= chats.get(i).getProfilePic() %>" alt="pic link"> </div>
+						              <div class="received_msg">
+						                <div class="received_withd_msg">
+						                  <p><%= messages.get(j).getMessage() %></p>
+						                  <!-- <span class="time_date"> 11:01 AM | June 9</span> -->
+						                </div>
+						              </div>
+						            </div>
+		           	<%
+		           				}
+		           		}
 		            %>
+		            	</div>
+		            	
+		            <% } %>
+		        
+		          <div class="msg_history" div id="msg_history"> <!-- here contains all messages from one chat -->
+		            
+		            
 		            
 		            <div class="incoming_msg">
 		              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
