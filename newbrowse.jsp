@@ -248,6 +248,8 @@
 
 						  </select>
 						</div>
+						
+						<input type="hidden" name="userID" value="<%= userID %>">
 
 
 				  <button class="btn btn-primary" type="submit" value="submit" style="margin-left: auto; margin-right: auto; text-align: center;">Search</button>
@@ -279,7 +281,9 @@
 				<div class="cardBox" style="">
 					<div class="card" style="width: 18rem; margin: auto;">
 						<div class="card-img-box" style="width: 286px; height: 240px; overflow: hidden;">
+							<% if(users.size() > 0) { %>
 							<img class="card-img-top" id="profilepic" src="<%= users.get(0).getProfilePic() %>">
+							<% } %>
 						</div>
 					  
 					  <div class="card-body">
