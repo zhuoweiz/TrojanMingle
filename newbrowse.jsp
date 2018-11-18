@@ -31,13 +31,18 @@
 	<!-- start Teagan's code -->
 
 	<%
+		
+		//browse page expects a guest boolean, userID int, users ArrayList
+	
 		int count = 1; //variable to keep track of which user we're on
 		
 		int userID = -1; //set userID to -1 to indicate guest status
 		
+		boolean guest = (boolean)request.getAttribute("guest");
+		
 		//assuming userID passed in from other servlet call redirecting to browse page
 		//if user is NOT a guest, but logged in, change the userID to the actual userID
-		if(!(boolean)request.getAttribute("guest")) { 
+		if(!guest) { 
 			userID = (int)request.getAttribute("userID");
 		}
 		
@@ -99,7 +104,7 @@
 	    </script>
 	    
 	    <!-- only show link to chat page if user is NOT a guest -->
-	    <% if(!(boolean)request.getAttribute("guest")) { %>
+	    <% if(!guest) { %>
 	    <span class="nav-item">
         	<a class="nav-link" style="padding-left: 0px; color: darkgrey; margin-top: 5px; margin-bottom: 5px;" href="ChatServlet?userID=<%= userID %>">Chat</a> <%-- <%= userID %> --%>
     	</span>
@@ -114,26 +119,36 @@
 	</nav>
 		<h1 style="line-height: 80px;">Browse</h1>
 
-
+		<!-- ONLY SHOW FILTERING IF USER IS NOT A GUEST -->
+		<% if(!guest) { %>
 		<div id="_searchbarControlBox">
 			<a class="btn btn-primary" data-toggle="collapse" href="#_searchFilterBox" role="button" aria-expanded="false" aria-controls="_searchFilterBox" style="width: 100%;">
 			    Search Filter
 			  </a>
 		</div>
+		<% } %>
 
 		<div class="_complexBox">
 			<div class="collapse" id="_searchFilterBox">
 
-				<form class="needs-validation form-inline" novalidate>
+				<form id="filterform" class="needs-validation form-inline" novalidate method="GET" action="Filter">
+						
+						<!-- /* String age1 = request.getParameter("age1");
+							String age2 = request.getParameter("age2");
+							String gender = request.getParameter("gender");
+							String major = request.getParameter("major");
+							String idealDate = request.getParameter("idealDate");
+						    String yr = request.getParameter("yr"); */ -->
+						
 						<div class="input-group mb-3" style="width: 100%">
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01">Gender</label>
 						  </div>
-						  <select class="custom-select" id="inputGroupSelect01" required>
+						  <select class="custom-select" id="inputGroupSelect01" name="gender" required>
 						    <option selected>Choose...</option>
-						    <option value="1">Male</option>
-						    <option value="2">Female</option>
-						    <option value="3">Other</option>
+						    <option value="Male">Male</option>
+						    <option value="Female">Female</option>
+						    <option value="Other">Other</option>
 						  </select>
 						</div>
 
@@ -141,7 +156,7 @@
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01"> From</label>
 						  </div>
-						  <select class="custom-select" id="inputGroupSelect01" style="margin-right: 10px;">
+						  <select class="custom-select" id="inputGroupSelect01" name="age1" style="margin-right: 10px;">
 						    <option selected>Age..</option>
 						    <option value="17">< 18</option>
 						    <option value="18">18</option>
@@ -163,7 +178,7 @@
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01"> To</label>
 						  </div>
-						  <select class="custom-select" id="inputGroupSelect01">
+						  <select class="custom-select" id="inputGroupSelect01" name="age2">
 						    <option selected>Age..</option>
 						    <option value="17">< 18</option>
 						    <option value="18">18</option>
@@ -189,10 +204,10 @@
 						  </div>
 
 						  <!-- PROBABLY MAKE THIS INTO A TEXT FIELD -->
-						  <select class="custom-select" id="inputGroupSelect01" required>
+						  <select class="custom-select" id="inputGroupSelect01" name="major" required>
 						    <option selected>Choose...</option>
-						    <option value="1">Computer Science</option>
-						    <option value="2">Business Administration</option>
+						    <option value="Computer Science">Computer Science</option>
+						    <option value="Business Administration">Business Administration</option>
 						    <option value="3">Double</option>
 						  </select>
 						</div>
@@ -201,7 +216,7 @@
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01">Year</label>
 						  </div>
-						  <select class="custom-select" id="inputGroupSelect01" required>
+						  <select class="custom-select" id="inputGroupSelect01" name="yr" required>
 						    <option selected>Choose...</option>
 						    <option value="1">1</option>
 						    <option value="2">2</option>
@@ -218,29 +233,29 @@
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01">Ideal date</label>
 						  </div>
-						  <select class="custom-select" id="inputGroupSelect01" required>
+						  <select class="custom-select" id="inputGroupSelect01" name="idealDate" required>
 						    <option selected>Choose...</option>
-						    <option value="1">Movie</option>
-						    <option value="2">Hiking</option>
-						    <option value="3">Picnic</option>
-						    <option value="4">Coffee</option>
-						    <option value="5">Breakfast</option>
-						    <option value="6">Lunch</option>
-						    <option value="7">Dinner</option>
-						    <option value="8">Concert</option>
-						    <option value="9">Sport</option>
-						    <option value="10">Game</option>
+						    <option value="Movie">Movie</option>
+						    <option value="Hiking">Hiking</option>
+						    <option value="Picnic">Picnic</option>
+						    <option value="Coffee">Coffee</option>
+						    <option value="Breakfast">Breakfast</option>
+						    <option value="Lunch">Lunch</option>
+						    <option value="Dinner">Dinner</option>
+						    <option value="Concert">Concert</option>
+						    <option value="Sport">Sport</option>
+						    <option value="Game">Game</option>
 
 						  </select>
 						</div>
 
 
-				  <button class="btn btn-primary" type="submit" style="margin-left: auto; margin-right: auto;">Reload the deck</button>
+				  <button class="btn btn-primary" type="submit" value="submit" style="margin-left: auto; margin-right: auto; text-align: center;">Search</button>
 				</form>
 
 				<script>
 				// Example starter JavaScript for disabling form submissions if there are invalid fields
-				(function() {
+				/* (function() {
 				  'use strict';
 				  window.addEventListener('load', function() {
 				    // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -256,7 +271,7 @@
 				      }, false);
 				    });
 				  }, false);
-				})();
+				})(); */
 				</script>
 			</div>
 
@@ -269,11 +284,15 @@
 					  
 					  <div class="card-body">
 					    <!-- start Teagan's code -->
-					    <!-- hidden for the moment until we figure out how to deal with profile pics -->
-					    <p id="profilepic" style="display: none;"><%= users.get(0).getProfilePic() %></p>
-						<p id="otherID" style="display: none;"><%= users.get(0).getUserID() %></p>
-						<div id="info" style="text-align: center; margin-bottom: 10px;"><%= users.get(0).toString() %></div>
-						
+					    
+					    <!--  only display users if there are users matching the criteria -->
+					    <% if(users.size() > 0) { %>
+						    <p id="profilepic" style="display: none;"><%= users.get(0).getProfilePic() %></p>
+							<p id="otherID" style="display: none;"><%= users.get(0).getUserID() %></p>
+							<div id="info" style="text-align: center; margin-bottom: 10px;"><%= users.get(0).toString() %></div>
+						<% } else { %>
+							<p style="color: red; text-align: center;">No results matching criteria</p>
+						<% } %>
 						<!-- hide all the users in the list in hidden divs -->
 						<% for(int i = 1; i < users.size(); i++) { %>
 							<div id="<%= i %>" style="display: none;"><%= users.get(i).toString() %></div>
@@ -378,6 +397,17 @@
 		else if (e.keyCode == '39') { //right arrow pressed
 			right();
 	    }
+	}
+	
+	//use the filter form to filter users shown
+	function filter() {
+		
+		//AJAX call to servlet
+		//make sure to pass userID as parameter
+		
+		//in callback function
+			document.getElementById("info").innerHTML = xhttp.responseText;
+		
 	}
 	
 	
