@@ -70,9 +70,6 @@ public class SignUp extends HttpServlet {
 	    PreparedStatement preparedStatement = null;
 	    
 	    System.out.println("In the user adding servlet ---------------------------------------->");
-	    
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("DisplayUserServlet?guest=false");
-		dispatcher.forward(request, response); 
 		
 	    try {
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -108,7 +105,29 @@ public class SignUp extends HttpServlet {
 	            preparedStatement.setString(12, bio);
 
 	            preparedStatement.executeUpdate();
+	            
+	    	    ResultSet rs2 = null;
+	    	    String insertTableSQL2 = "SELECT * from Users where email='" + email + "@usc.edu'";
+	    	    PreparedStatement preparedStatement2 = conn.prepareStatement(insertTableSQL2);  
+		        rs2 = preparedStatement2.executeQuery();
+		        if(rs2.next()) {
+		        	int userID = rs2.getInt("userID");
+		            
+		            request.setAttribute("userID", userID);
+					request.setAttribute("guest", "false");
+		        }
+				
+				try {
+					RequestDispatcher dp = getServletContext().getRequestDispatcher("/DisplayUserServlet");
+					dp.forward(request,response);
+				} catch (java.lang.NumberFormatException e) {
+					// TODO: handle exception
+					System.out.println("exception: " + e.getMessage());
+				}
 	        } else {
+	        	request.setAttribute("fail", "Invalid username or password");
+	        	RequestDispatcher dp = getServletContext().getRequestDispatcher("/Signup.jsp");
+				dp.forward(request,response);
 	            System.out.println("User already exists in the database");
 	        }
 	            } catch (SQLException sqle) {

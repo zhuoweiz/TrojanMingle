@@ -68,7 +68,6 @@ public class SignIn extends HttpServlet {
 				
 				try {
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/DisplayUserServlet");
-//					RequestDispatcher rd = request.getRequestDispatcher("/DisplayUserServlet");
 					dispatcher.forward(request,response);
 				} catch (java.lang.NumberFormatException e) {
 					// TODO: handle exception

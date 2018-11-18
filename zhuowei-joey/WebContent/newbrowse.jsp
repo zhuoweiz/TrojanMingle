@@ -119,7 +119,8 @@
     	</span>
     	<% } %>
 	    <span class="nav-item">
-        	<a class="nav-link" style="padding-left: 0px; color: white; margin-top: 5px; margin-bottom: 5px;" href="">Sign Out</a>
+	    	<!-- zhuowei edit -->
+        	<a class="nav-link" style="padding-left: 0px; color: white; margin-top: 5px; margin-bottom: 5px;" onclick="signout();">Sign Out</a>
     	</span>
 	    <!-- <span class="nav-item">
         	<a class="nav-link" style="padding-left: 0px; color: white;" href="">Signup</a>

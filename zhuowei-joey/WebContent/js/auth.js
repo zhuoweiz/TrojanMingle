@@ -49,7 +49,7 @@ function signin(token) {
 // sessionStorage.clear();
 
 function signout() {
-	sessionStorage.removeItem('email');
+	sessionStorage.removeItem('userToken');
 }
 
 var previousFilename = "";

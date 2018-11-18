@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%
+	String failMessage = (String)request.getAttribute("fail");
+	if(failMessage==null) {
+		failMessage = "";
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +74,7 @@
 
 	<h1>Sign up for Trojan Mingle!</h1>
 	<div id="_signupBox">
-		<form class="needs-validation" action="SignUp" method="POST" onsubmit="signup();" novalidate>
+		<form class="needs-validation" action="SignUp" method="POST" onsubmit="" novalidate>
 		  <div class="form-row">
 		    <div class="col-md-3 mb-3">
 		      <label for="validationCustom01">Full name</label>
@@ -154,7 +161,6 @@
 		  	<label for="validationDefaultUsername">Idea date</label>
 	  		  <div class="form-row" style="">
 
-
 	  		  	<div class="form-check form-check-inline">
 	  		  	  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="movie" name="idealDate">
 	  		  	  <label class="form-check-label" for="inlineCheckbox1">Movie</label>
@@ -220,6 +226,7 @@
 		      </div>
 		    </div>
 		  </div>
+		  <a style="color: red;"><%= failMessage %></a>
 		  <button class="btn btn-primary" type="submit">Submit form</button>
 		</form>
 
@@ -246,12 +253,11 @@
 		</script>
 	</div>
 	
-
 	<hr>
 	<div class="footer" style="font-family: Arial">
 		<p>Copyright © 2018 Trojan Mingle Inc. All rights reserved.</p>
 	</div>
 
-	<!-- <script type="text/javascript" src="js/auth.js"></script> -->
+	<script type="text/javascript" src="js/auth.js"></script>
 </body>
 </html>
