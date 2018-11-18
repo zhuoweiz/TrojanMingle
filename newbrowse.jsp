@@ -21,11 +21,13 @@
 	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 	    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>	
 
-	<link rel="stylesheet" type="text/css" href="swipe.css">
-	
-	<!-- <link rel="stylesheet" type="text/css" href="css/home.css">
+	<!-- zhuowei edit -->
+	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<link rel="stylesheet" type="text/css" href="css/guest.css">
-	<link rel="stylesheet" type="text/css" href="css/swipe.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/swipe.css">
+		
+	<!-- zhuowei edit -->
+	<script type="text/javascript" src="js/auth.js"></script>
 </head>
 <body>
 	<!-- start Teagan's code -->
@@ -60,6 +62,22 @@
 
 	<!-- end Teagan's code -->
 
+	<!-- zhuowei's edit -->
+	<script>
+	    var userToken = sessionStorage.getItem('userToken');
+    	if (userToken === null) {
+    		  //...
+    		  /* $("#guestBrowseLink").css("display","block"); */
+    		  /* $("#signoutLink").css("display","none"); */
+    	} else {
+    		//signed in
+    		/* $("#guestBrowseLink").css("display","none"); */
+    		/* $("#loginLink").css("display","none");
+    		$("#signupLink").css("display","none"); */
+    		/* $("#signoutLink").css("display","block"); */
+    	}
+    </script>
+    <!-- zhuowei's edit -->
 
 	<nav class="navbar navbar-expand-lg navbar-light mainNavBar"  style="padding: 0px 0.5rem;">
 	  <!-- <a class="navbar-brand" href="#">Trojan Mingle</a> -->
@@ -70,7 +88,7 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
-	        <a class="nav-link" href="home.jsp" style="color: gold;">Home <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="Home.jsp" style="color: gold;">Home <span class="sr-only">(current)</span></a>
 	      </li>
 	    </ul>
 	    
@@ -103,18 +121,25 @@
 			}
 	    </script>
 	    
-	    <!-- only show link to chat page if user is NOT a guest -->
-	    <% if(!guest) { %>
-	    <span class="nav-item">
-        	<a class="nav-link" style="padding-left: 0px; color: darkgrey; margin-top: 5px; margin-bottom: 5px;" href="ChatServlet?userID=<%= userID %>">Chat</a> <%-- <%= userID %> --%>
-    	</span>
-    	<% } %>
-	    <span class="nav-item">
-        	<a class="nav-link" style="padding-left: 0px; color: white; margin-top: 5px; margin-bottom: 5px;" href="">Logged in as XXX</a>
-    	</span>
-	    <!-- <span class="nav-item">
-        	<a class="nav-link" style="padding-left: 0px; color: white;" href="">Signup</a>
-    	</span> -->
+	    <% if(!(boolean)request.getAttribute("guest")) { %>
+		    <span class="nav-item" id="chatLink">
+	        	<a class="nav-link" style="padding-left: 0px; color: darkgrey; margin-top: 5px; margin-bottom: 5px;" href="ChatServlet?userID=<%= userID %>">Chat</a> <%-- <%= userID %> --%>
+	    	</span>
+    	
+    		<!-- zhuowei's edit -->
+		    <span class="nav-item" id="signoutLink">
+	        	<a class="nav-link" style="padding-left: 0px; color: white; margin-top: 5px; margin-bottom: 5px;" onclick="signout();" href="Home.jsp">Sign Out</a>
+	    	</span>
+	    	
+    	<% } else { %>
+    		<span class="nav-item" id="signupLink">
+	        	<a class="nav-link" style="padding-left: 0px; color: white;" href="Signup.jsp">Signup</a>
+	    	</span>
+	    	<span class="nav-item" id="signinLink">
+	        	<a class="nav-link" style="padding-left: 0px; color: white;" href="Signin.jsp">Signin</a>
+	    	</span>
+    	<% }%>
+    	<!-- end zhuowei's edit -->
 	  </div>
 	</nav>
 		<h1 style="line-height: 80px;">Browse</h1>
