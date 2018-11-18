@@ -57,7 +57,9 @@ public class DisplayUserServlet extends HttpServlet {
 	        
 	        else { //return all users found in database
 	        	insertTableSQL = "SELECT userID, fname, picLink, age, major, gender, yr, standing, idealDate, bio FROM Users ORDER BY RAND();";
-	        	int userID = Integer.parseInt(request.getParameter("userID")); //assume current userID is also passed in
+	        	
+	        	//assuming we're getting this userID passed in from sign in or sign up servlet
+	        	int userID = (int) request.getAttribute("userID"); //assume current userID is also passed in
 	        	request.setAttribute("userID", userID); //so we can have this on the JSP
 	        
 	        }
