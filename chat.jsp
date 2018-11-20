@@ -31,11 +31,11 @@
 
 	<%
 		//get list of chat objects and current userID from servlet redirect
-		ArrayList<Chat> chats = new ArrayList<Chat>(); //(ArrayList<Chat>)request.getAttribute("chats");
-		int userID = 1; //(int)request.getAttribute("userID");
+		ArrayList<Chat> chats = (ArrayList<Chat>)request.getAttribute("chats");
+		int userID = (int)request.getAttribute("userID");
 		
 		//dummy values to test front-end code
-		ArrayList<Message> m = new ArrayList<Message>();
+		/* ArrayList<Message> m = new ArrayList<Message>();
 		m.add(new Message(2, "hey wanna analyze some algorithms?"));
 		m.add(new Message(1, "yeah sure"));
 		m.add(new Message(2, "cool what do you think of network flow"));
@@ -46,7 +46,7 @@
 	
 		ArrayList<Message> s = new ArrayList<Message>();
 		s.add(new Message(3, "hi im sandra"));
-		chats.add(new Chat("Sandra", "https://firebasestorage.googleapis.com/v0/b/cs201-1389b.appspot.com/o/IMG_0053.PNG?alt=media&token=3751774d-5a66-4a5b-90db-471df4a74c7d", s));
+		chats.add(new Chat("Sandra", "https://firebasestorage.googleapis.com/v0/b/cs201-1389b.appspot.com/o/IMG_0053.PNG?alt=media&token=3751774d-5a66-4a5b-90db-471df4a74c7d", s)); */
 		
 	%>
 	
@@ -119,7 +119,9 @@
 				                <div class="chat_ib">
 				                  <h5><%= chats.get(i).getName() %></h5>
 				                  <% ArrayList<Message> msgs = chats.get(i).getMessages(); %>
-				                  <p><%= msgs.get(msgs.size()-1).getMessage() %></p> <!-- get most recent message -->
+				                  <% if(msgs.size() > 0) { //only put most recent message in sidebar if it exists %>
+				                  	<p><%= msgs.get(msgs.size()-1).getMessage() %></p> <!-- get most recent message -->
+				                  <% } %>
 				                </div>
 				              </div>
 		          	<% 
@@ -128,47 +130,27 @@
 		          	%>
 		          	
 		          
-		            <div class="chat_list">
-		              <div class="chat_people">
-		                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		                <div class="chat_ib">
-		                  <h5>Tommy Trojan <span class="chat_date">Dec 25</span></h5>
-		                  <p>Test, which is a new approach to have all solutions 
-		                    astrology under one roof.</p>
-		                </div>
-		              </div>
-		            </div>
-		            
-		            
-		            <div class="chat_list">
-		              <div class="chat_people">
-		                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		                <div class="chat_ib">
-		                  <h5>Tommy Trojan Jr.<span class="chat_date">Dec 25</span></h5>
-		                  <p>haha.</p>
-		                </div>
-		              </div>
-		            </div>
-		            <div class="chat_list">
-		              <div class="chat_people">
-		                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		                <div class="chat_ib">
-		                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-		                  <p>Nice to meet you.</p>
-		                </div>
-		              </div>
-		            </div>
+		        
 		          </div>
 		        </div>
 		        <div class="mesgs" id="messages">
 		        
-		        <%
+		        
+		        
+		          <div class="msg_history" id="msg_history" style="position: relative;"> 
+		            
+		            <!-- here contains all messages from one chat -->
+		            
+		          </div>
+		          
+		          <%
 		            	//code for creating divs for message history with each person
 		            	for(int i = 0; i < chats.size(); i++) {
 		           			ArrayList<Message> messages = chats.get(i).getMessages();
 		           		%>
 		            		<!-- load all messages into a hidden div -->
 		            		<div id="msg_history<%= i %>" style="display: none;">
+		            		
 		           <%
 		           			//loop through messages for each chat
 		           			for(int j = 0; j < messages.size(); j++) {
@@ -198,61 +180,45 @@
 						              </div>
 						            </div>
 		           	<%
-		           				}
-		           		}
+		           				} 
+		           				
+		           			}
 		            %>
+		            	
+		            	<div class="type_msg" style="position: absolute; bottom: 0; left: 0; width: 100%;">
+		    		            <div class="input_msg_write">
+		    		              <input type="text" class="write_msg" id="message" placeholder="Type a message" name="message" />
+		    		              <!-- add onclick here to send message to servlet -->
+		    		              <button class="msg_send_btn" type="button" onclick="return sendMessage(<%= userID %>, <%= chats.get(i).getUserID() %>);">Send</button>
+		    		            </div>
+		    		          </div>
 		            	</div>
 		            	
 		            <% } %>
-		        
-		          <div class="msg_history" div id="msg_history"> <!-- here contains all messages from one chat -->
-		            
-		            
-		            
-		            <div class="incoming_msg">
-		              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		              <div class="received_msg">
-		                <div class="received_withd_msg">
-		                  <p>Test which is a new approach to have all
-		                    solutions</p>
-		                  <span class="time_date"> 11:01 AM | June 9</span></div>
-		              </div>
-		            </div>
-		            <div class="outgoing_msg">
-		              <div class="sent_msg">
-		                <p>Test which is a new approach to have all
-		                  solutions</p>
-		                <span class="time_date"> 11:01 AM | June 9</span> </div>
-		            </div>
-		            <div class="incoming_msg">
-		              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		              <div class="received_msg">
-		                <div class="received_withd_msg">
-		                  <p>Test, which is a new approach to have</p>
-		                  <span class="time_date"> 11:01 AM | Yesterday</span></div>
-		              </div>
-		            </div>
-		            <div class="outgoing_msg">
-		              <div class="sent_msg">
-		                <p>USC Los Angeles</p>
-		                <span class="time_date"> 11:01 AM | Today</span> </div>
-		            </div>
-		            <div class="incoming_msg">
-		              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		              <div class="received_msg">
-		                <div class="received_withd_msg">
-		                  <p>Computer Science is fun.</p>
-		                  <span class="time_date"> 11:01 AM | Today</span></div>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="type_msg">
-		            <div class="input_msg_write">
-		              <input type="text" class="write_msg" placeholder="Type a message" />
-		              <!-- add onclick here to send mesasge to servlet -->
-		              <button class="msg_send_btn" type="button">Send</button>
-		            </div>
-		          </div>
+		          
+		          <script>
+		          	function sendMessage(userID, otherID) {
+		          		var message = document.getElementById("message").value;
+		          		console.log("message: "+message+" userID: "+userID+" other user: "+otherID);
+		          		
+		          		document.getElementById("msg_history").innerHTML += "<div class='outgoing_msg'><div class='sent_msg'><p>"+message+"</p></div></div>";
+		          		//message might not show up if you click away to a different chat and then come back to this one without refreshing page
+		          		
+		          		var xhttp = new XMLHttpRequest();	
+						xhttp.open("POST", "SendMessageServlet?userID="+userID+"&otherID="+otherID+"&message="+message, true);
+						
+						//calls onreadystatechange more than once
+						xhttp.onreadystatechange = function() {
+							
+						} 
+						
+						xhttp.send();
+
+		          	}
+		          
+		          </script>
+		          
+		          
 		        </div>
 		      </div>
 			</div>
