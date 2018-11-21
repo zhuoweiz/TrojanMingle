@@ -24,7 +24,14 @@ public class PushThread extends Thread{
 						currentNum = newLike;
 					}
 				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ie) {
+					System.out.println("ie being thrown");
+				}
+				
 			}
+			
 		}
 	}
 	
