@@ -85,7 +85,8 @@ public class ChatServlet extends HttpServlet {
 	        			+ "OR (senderID="+likedID+" AND receiverID="+userID+") ORDER BY chatID;"));
 	        	counter++;
 	        	
-	        	Chat ch = new Chat(fname, profilepic, new ArrayList<Message>());
+	        	//ADDED LIKEDID TO THIS DECLARATION
+	        	Chat ch = new Chat(likedID, fname, profilepic, new ArrayList<Message>());
 	        	
 	        	while(sets.get(counter).next()) {
 	        		
