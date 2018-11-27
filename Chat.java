@@ -2,6 +2,8 @@ package user;
 
 import java.util.ArrayList;
 
+//ADDED USERID AS AN INSTANCE FIELD AND GETTER FOR IT
+
 public class Chat {
 	
 	//save userIDs of people user is two way matched with for 
@@ -10,12 +12,18 @@ public class Chat {
 	private String name; //names for name on chat sidebar
 	private String profilepic;
 	private ArrayList<Message> messages;
+	private int userID;
 	
-	public Chat(String n, String p, ArrayList<Message> m) {
-		//userIDs = u;
+	public Chat(int u, String n, String p, ArrayList<Message> m) {
+		userID = u;
 		profilepic = p;
 		name = n;
 		messages = m;
+	}
+	
+	//NEW
+	public int getUserID() {
+		return userID;
 	}
 	
 	public void addMessage(Message message) {
